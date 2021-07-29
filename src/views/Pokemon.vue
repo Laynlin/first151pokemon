@@ -1,27 +1,24 @@
 <template>
   <div class="pokemon">
-    <img @click="GotoHome()" alt="Vue logo" src="../assets/logo.png"/>
-    <DetailPokemon :name='name'/>
-    <DetailMove />
+    <v-container>
+      <DetailPokemon :name='name'/>
+    </v-container>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import DetailPokemon from '@/components/DetailPokemon.vue'
-import DetailMove from '@/components/DetailMove.vue'
 
 export default {
   name: 'Pokemon',
   props:['name'],
   components: {
-     DetailPokemon, 
-     DetailMove
+     DetailPokemon,
   },
-  methods:{
-    GotoHome(){
-      this.$router.push('/');
-    }
+  beforeRouteLeave (to, from, next){
+    this.$store.dispatch('initMove')
+    next()
   }
 }
 </script>

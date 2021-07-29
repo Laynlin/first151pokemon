@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
     <First151 />
   </div>
 </template>
@@ -13,6 +12,11 @@ export default {
   name: 'Home',
   components: {
     First151
+  },
+  beforeRouteEnter(to, from, next){
+    next(vm => {
+      vm.$store.dispatch("fetchPokemons");
+    })
   }
 }
 </script>

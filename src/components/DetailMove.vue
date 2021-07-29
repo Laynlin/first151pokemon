@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{move.effect_entries[0].short_effect}}
+    {{ effect }}
   </div>
 </template>
 
@@ -10,8 +10,11 @@ export default {
   computed:{
     move(){
       return this.$store.getters.move
+    },
+    effect(){
+      return this.move?.effect_entries?.[0].short_effect
     }
-  },
+  }
 }
 </script>
 
